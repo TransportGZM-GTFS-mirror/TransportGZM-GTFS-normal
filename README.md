@@ -3,7 +3,7 @@
 This project is a mirror of TranspotGZM's General Transit Feed Specification (GTFS) data. 
 The data is sourced directly from TranspotGZM's systems and is provided under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
 
-Static url to latest release: https://github.com/TransportGZM-GTFS-mirror/TransportGZM-GTFS-extended-ver/releases/latest/download/TransportGZM-GTFS.zip
+Static url to latest release: https://github.com/TransportGZM-GTFS-mirror/TransportGZM-GTFS-normal/releases/latest/download/TransportGZM-GTFS.zip
 
 > TransportGZM says its "temporary old version" while they develop extended versions. I don't know until when its going to work.
 
