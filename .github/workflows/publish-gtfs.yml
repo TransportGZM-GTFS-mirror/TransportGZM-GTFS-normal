@@ -1,0 +1,37 @@
+name: Publish GTFS Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch:
+
+jobs:
+  fetch-and-publish:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Date
+        id: date
+        run: echo "date=$(date +'%d-%m-%Y')" >> $GITHUB_OUTPUT
+
+      - name: Fetch GTFS data URL
+        id: fetch-url
+        run: |
+          set -x
+          DATA_SET=5d8d7145-1be1-4ed2-9c18-5535e056a56d
+          url=$(curl -s -k "https://otwartedane.metropoliagzm.pl/api/3/action/package_show?id=${DATA_SET}" | jq -r '.result.resources | sort_by(.created) | last | .url')
+          echo "gtfs_url=${url}" >> $GITHUB_OUTPUT
+
+      - name: Download GTFS data
+        run: |
+          set -x
+          curl -L -k ${{ steps.fetch-url.outputs.gtfs_url }} -o TransportGZM-GTFS.zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: GTFS ${{ steps.date.outputs.date }}
+          tag_name: ${{ steps.date.outputs.date }}
+          files: TransportGZM-GTFS.zip
+          make_latest: true
