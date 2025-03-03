@@ -19,7 +19,7 @@ jobs:
         id: fetch-url
         run: |
           set -x
-          DATA_SET=5d8d7145-1be1-4ed2-9c18-5535e056a56d
+          DATA_SET=rozklady-jazdy-i-lokalizacja-przystankow-gtfs-wersja-rozszerzona
           url=$(curl -s -k "https://otwartedane.metropoliagzm.pl/api/3/action/package_show?id=${DATA_SET}" | jq -r '.result.resources | sort_by(.created) | last | .url')
           echo "gtfs_url=${url}" >> $GITHUB_OUTPUT
 
