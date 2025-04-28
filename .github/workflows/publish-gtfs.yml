@@ -2,7 +2,7 @@ name: Publish GTFS Data
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
+    - cron: '30 3 * * *' # Run at 3:30
   workflow_dispatch:
 
 jobs:
